@@ -1,0 +1,33 @@
+# Ignore CLion/JetBrains IDE project files
+.idea/
+
+# Build directories
+cmake-build-*/
+build/
+out/
+
+# CMake-generated files
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+install_manifest.txt
+compile_commands.json
+
+# Executables and binaries
+*.exe
+*.out
+*.o
+*.obj
+*.a
+*.so
+*.dll
+*.lib
+
+# Logs and temporary files
+*.log
+*.tmp
+
+# System files
+.DS_Store
+Thumbs.db
