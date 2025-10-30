@@ -20,7 +20,7 @@ bool Tile::onLeave(Tile* destTile, Character* who){
 
 bool Tile::moveTo(Tile* destTile, Character* who){
   if(onLeave(destTile, who) == false) return false;
-  std::pair<bool, Tile*> tileEntered = onEnter(who);
+  std::pair<bool, Tile*> tileEntered = destTile->onEnter(who);
   if(tileEntered.first == false) return false;
   Tile* destinationTile = tileEntered.second != nullptr ? tileEntered.second : destTile;
 
