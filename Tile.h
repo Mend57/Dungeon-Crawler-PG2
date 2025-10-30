@@ -16,12 +16,12 @@ class Tile {
 
   public:
     virtual ~Tile() = default;
-    std::string getTexture(){return texture;};
-    Character* getCharacter(){return character;};
-    int getRow(){return row;};
-    int getColumn(){return column;};
-    void setCharacter(Character* character){this->character = character;};
-    bool hasCharacter(){return character != nullptr;};
+    std::string getTexture(){return texture;}
+    Character* getCharacter(){return character;}
+    int getRow(){return row;}
+    int getColumn(){return column;}
+    void setCharacter(Character* character){this->character = character;}
+    bool hasCharacter(){return character != nullptr;}
 
     std::pair<bool, Tile*> onEnter(Character* who);
     bool onLeave(Tile* destTile, Character* who);

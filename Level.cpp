@@ -5,8 +5,12 @@
 #include "Portal.h"
 
 Level::Level(const int height, const int width) : height(height), width(width) {
-    int counter = 0;
+    tileMap.resize(height);
+    for (int row = 0; row < height; ++row) {
+        tileMap[row].resize(width, nullptr);
+    }
     std::vector<Portal*> portal;
+    int counter = 0;
     for (int row = 0; row < height; row++) {
         for (int col = 0; col < width; col++) {
             switch (l[counter]) {
@@ -16,20 +20,23 @@ Level::Level(const int height, const int width) : height(height), width(width) {
                 case '#':
                     tileMap[row][col] = new Wall(row, col, "#");
                     break;
-                case 'X':
-                    tileMap[row][col] = new Floor(row, col, "X");
-                    placeCharacter(new Character(tileMap[row][col]), row, col);
-                    break;
-                case 'O':
+                case 'O':{
                     tileMap[row][col] = new Portal(row, col, "O", nullptr);
                     Portal* newPortal = dynamic_cast<Portal*>(tileMap[row][col]);
                     portal.push_back(newPortal);
+                    break;
+                }
+                default:
+                    break;
             }
             counter++;
         }
-        portal[0]->setDestination(portal[1]);
-        portal[1]->setDestination(portal[0]);
-     }
+    }
+    for (int i = 0; i < portal.size(); i+=2) {
+        portal[i]->setDestination(portal[i+1]);
+        portal[i+1]->setDestination(portal[i]);
+    }
+    placeCharacter(new Character(getTile(1,3)),1,3);
 }
 
 
@@ -62,6 +69,7 @@ void Level::placeCharacter(Character* c, int row, int col) {
     Tile* tile = getTile(row, col);
     if (tile == nullptr || tile->getTexture() != ".") return;
     tile->setCharacter(c);
+
     c->setTile(tile);
     addCharacter(c);
 }
