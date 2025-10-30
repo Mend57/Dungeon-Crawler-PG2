@@ -10,9 +10,12 @@ class Tile {
     const int row;
     const int column;
 
-  public:
-    Tile(int row, int column, std::string texture, Character* character = nullptr) : row(row), column(column), texture(texture), character(character){};
 
+  protected:
+    Tile(const int row, const int column, std::string texture) : row(row), column(column), texture(texture), character(nullptr){}
+
+  public:
+    virtual ~Tile() = default;
     std::string getTexture(){return texture;};
     Character* getCharacter(){return character;};
     int getRow(){return row;};
@@ -20,9 +23,8 @@ class Tile {
     void setCharacter(Character* character){this->character = character;};
     bool hasCharacter(){return character != nullptr;};
 
-    virtual Tile* onEnter(Tile* fromTile, Character* who);
-    Tile* onLeave(Tile* destTile, Character* who);
-
+    std::pair<bool, Tile*> onEnter(Character* who);
+    bool onLeave(Tile* destTile, Character* who);
     bool moveTo(Tile* destTile, Character* who);
 };
 

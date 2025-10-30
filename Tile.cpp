@@ -1,27 +1,31 @@
 #include "Tile.h"
 #include "Portal.h"
 
-Tile* Tile::onEnter(Tile* fromTile, Character* who){
-  if (hasCharacter() || this->getTexture() == "#") return nullptr;
-  return this;
+std::pair<bool, Tile*> Tile::onEnter(Character* who){
+  bool canEnter = true;
+  Portal* destPortal = dynamic_cast<Portal*>(this);
+  bool isPortal = destPortal != nullptr;
+  if(isPortal) {
+    if (destPortal->hasCharacter()) canEnter = false;
+  }
+
+  if (this->getTexture() == "#") canEnter = false;
+  return {canEnter, (isPortal ? destPortal->getDestination() : nullptr)};
 }
 
-Tile* Tile::onLeave(Tile* destTile, Character* who){
-  if (!hasCharacter() || character != who || destTile == nullptr) return nullptr;
-  return this;
+bool Tile::onLeave(Tile* destTile, Character* who){
+  if (!hasCharacter() || character != who || destTile == nullptr || destTile->hasCharacter()) return false;
+  return true;
 }
 
 bool Tile::moveTo(Tile* destTile, Character* who){
-  Portal* destPortal = dynamic_cast<Portal*>(destTile);
-
-  Tile* tileLeaved = onLeave(destTile, who);
-  if(tileLeaved == nullptr) return false;
-
-  Tile* tileEntered = onEnter(tileLeaved, who);
-  if(tileEntered == nullptr) return false;
+  if(onLeave(destTile, who) == false) return false;
+  std::pair<bool, Tile*> tileEntered = onEnter(who);
+  if(tileEntered.first == false) return false;
+  Tile* destinationTile = tileEntered.second != nullptr ? tileEntered.second : destTile;
 
   this->character = nullptr;
-  destTile->character = who;
-  who->setTile(destPortal != nullptr ? destPortal->getDestination() : destTile);
+  (destinationTile)->character = who;
+  who->setTile(destinationTile);
   return true;
 }

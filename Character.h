@@ -7,6 +7,7 @@ class Character {
       Tile* tile;
 
     public:
+      Character(Tile* tile) : tile(tile) {}
       Tile* getTile(){return tile;}
       void setTile(Tile* tile){this->tile = tile;}
 };

@@ -8,13 +8,9 @@ class Portal : public Tile {
       Tile* destination;
 
     public:
-      Portal(int row, int column, std::string texture, Tile* destination, Character* character = nullptr) : Tile(row, column, texture, character), destination(destination){};
-      Tile* getDestination(){return destination;};
-
-      Tile* onEnter(Tile* fromTile, Character* who) override{
-        if (hasCharacter()) return nullptr;
-        return destination;
-      }
+      Portal(const int row, const int column, std::string texture, Tile* destination) : Tile(row, column, texture), destination(destination){}
+      Tile* getDestination(){return destination;}
+      void setDestination(Tile* destination){this->destination = destination;}
 };
 
 

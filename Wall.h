@@ -6,7 +6,7 @@
 
 class Wall : public Tile {
     public:
-      Wall(int row, int column, std::string texture, Character* character = nullptr) : Tile(row, column, texture, character){};
+      Wall(const int row, const int column, std::string texture) : Tile(row, column, texture){};
 };
 
 
