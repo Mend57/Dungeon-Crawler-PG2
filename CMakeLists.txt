@@ -4,4 +4,4 @@ project(DungeonCrawler)
 set(CMAKE_CXX_STANDARD 20)
 
 file(GLOB SOURCES "*.cpp")
-add_executable(MeuJogo ${SOURCES})
+add_executable(DungeonCrawler ${SOURCES})

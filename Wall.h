@@ -6,7 +6,8 @@
 
 class Wall : public Tile {
     public:
-      Wall(const int row, const int column, std::string texture) : Tile(row, column, texture){};
+      Wall(const int row, const int column) : Tile(row, column, "#"){};
+      std::pair<bool, Tile*> onEnter(Character* who) override {return {false, nullptr};}
 };
 
 

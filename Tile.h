@@ -6,9 +6,10 @@
 class Tile {
   private:
     Character* character;
-    std::string texture;
     const int row;
     const int column;
+    std::string texture;
+
 
 
   protected:
@@ -21,10 +22,11 @@ class Tile {
     int getRow(){return row;}
     int getColumn(){return column;}
     void setCharacter(Character* character){this->character = character;}
+    void setTexture(std::string texture){this->texture = texture;}
     bool hasCharacter(){return character != nullptr;}
 
-    std::pair<bool, Tile*> onEnter(Character* who);
-    bool onLeave(Tile* destTile, Character* who);
+    virtual std::pair<bool, Tile*> onEnter(Character* who);
+    virtual bool onLeave(Tile* destTile, Character* who);
     bool moveTo(Tile* destTile, Character* who);
 };
 

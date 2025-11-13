@@ -1,5 +1,6 @@
 #ifndef DUNGEONCRAWLER_H
 #define DUNGEONCRAWLER_H
+
 #include "TerminalUI.h"
 
 class DungeonCrawler {
@@ -12,7 +13,7 @@ class DungeonCrawler {
 
     bool turn(){
       for(Character* character : level->getCharacters()){
-        Input input = terminalUI->move();
+        Input input = character->getController()->move();
         if(input.getExit() == true) return false;
 
         Tile* currentTile = character->getTile();

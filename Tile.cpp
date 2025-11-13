@@ -2,15 +2,7 @@
 #include "Portal.h"
 
 std::pair<bool, Tile*> Tile::onEnter(Character* who){
-  bool canEnter = true;
-  Portal* destPortal = dynamic_cast<Portal*>(this);
-  bool isPortal = destPortal != nullptr;
-  if(isPortal) {
-    if (destPortal->hasCharacter()) canEnter = false;
-  }
-
-  if (this->getTexture() == "#") canEnter = false;
-  return {canEnter, (isPortal ? destPortal->getDestination() : nullptr)};
+  return {true, nullptr};
 }
 
 bool Tile::onLeave(Tile* destTile, Character* who){

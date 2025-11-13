@@ -5,7 +5,7 @@
 
 class Floor : public Tile {
     public:
-      Floor(const int row, const int column, std::string texture) : Tile(row, column, texture){}
+      Floor(const int row, const int column) : Tile(row, column, "."){}
 };
 
 

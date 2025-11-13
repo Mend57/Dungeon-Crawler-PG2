@@ -1,8 +1,13 @@
 #include "Level.h"
 
+#include "Door.h"
 #include "Floor.h"
+#include "Pit.h"
 #include "Wall.h"
 #include "Portal.h"
+#include "Ramp.h"
+#include "Switch.h"
+#include "TerminalUI.h"
 
 Level::Level(const int height, const int width) : height(height), width(width) {
     tileMap.resize(height);
@@ -10,20 +15,35 @@ Level::Level(const int height, const int width) : height(height), width(width) {
         tileMap[row].resize(width, nullptr);
     }
     std::vector<Portal*> portal;
+    std::vector<Passive*> passiveObjects;
+    Switch* switchTile;
     int counter = 0;
     for (int row = 0; row < height; row++) {
         for (int col = 0; col < width; col++) {
             switch (l[counter]) {
                 case '.':
-                    tileMap[row][col] = new Floor(row, col, ".");
+                    tileMap[row][col] = new Floor(row, col);
+                    break;
+                case '<':
+                    tileMap[row][col] = new Ramp(row, col);
+                    break;
+                case '_':
+                    tileMap[row][col] = new Pit(row, col);
                     break;
                 case '#':
-                    tileMap[row][col] = new Wall(row, col, "#");
+                    tileMap[row][col] = new Wall(row, col);
+                    break;
+                case 'X':
+                    tileMap[row][col] = new Door(row, col);
+                    passiveObjects.push_back(dynamic_cast<Passive*>(tileMap[row][col]));
+                    break;
+                case '?':
+                    tileMap[row][col] = new Switch(row, col);
+                    switchTile = dynamic_cast<Switch*>(tileMap[row][col]);
                     break;
                 case 'O':{
-                    tileMap[row][col] = new Portal(row, col, "O", nullptr);
-                    Portal* newPortal = dynamic_cast<Portal*>(tileMap[row][col]);
-                    portal.push_back(newPortal);
+                    tileMap[row][col] = new Portal(row, col, nullptr);
+                    portal.push_back(dynamic_cast<Portal*>(tileMap[row][col]));
                     break;
                 }
                 default:
@@ -36,7 +56,8 @@ Level::Level(const int height, const int width) : height(height), width(width) {
         portal[i]->setDestination(portal[i+1]);
         portal[i+1]->setDestination(portal[i]);
     }
-    placeCharacter(new Character(getTile(1,3)),1,3);
+    for (Passive* passiveObj : passiveObjects) switchTile->attach(passiveObj);
+    placeCharacter(new Character(getTile(1,3), new TerminalUI),1,3);
 }
 
 
