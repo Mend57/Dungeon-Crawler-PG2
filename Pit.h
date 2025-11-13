@@ -7,7 +7,7 @@ class Pit : public Tile {
         Pit(const int row, const int column) : Tile(row, column, "_"){}
         bool onLeave(Tile* destTile, Character* who) override{
             if (!hasCharacter() || getCharacter() != who || destTile == nullptr || destTile->hasCharacter()) return false;
-            if (destTile->getTexture() == "<") return true;
+            if (destTile->getTexture() == "<" || destTile->getTexture() == "_") return true;
             return false;
         }
 

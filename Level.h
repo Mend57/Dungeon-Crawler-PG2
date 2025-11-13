@@ -10,18 +10,18 @@ class Level {
       std::vector<Character*> characters;
       const int height;
       const int width;
-      const std::string l = {
-          "##########"
-          "#O...?X..#"
-          "#........#"
-          "#........#"
-          "#....<_..#"
-          "#........#"
-          "##########"
-          "#O.......#"
-          "#........#"
-          "##########"
-      };
+      std::string l = {
+        "##########"
+        "#O.......#"
+        "#...<....#"
+        "#..___...#"
+        "#..___...#"
+        "#........#"
+        "#######X##"
+        "#O.......#"
+        "#...?....#"
+        "##########"
+        };
 
     public:
       Level(const int height, const int width);

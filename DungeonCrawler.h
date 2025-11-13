@@ -5,11 +5,11 @@
 
 class DungeonCrawler {
   private:
-    TerminalUI* terminalUI;
+    AbstractView* abstractView;
     Level* level;
 
   public:
-    DungeonCrawler(TerminalUI* terminalUI, Level* level) : terminalUI(terminalUI), level(level) {};
+    DungeonCrawler(AbstractView* abstractView, Level* level) : abstractView(abstractView), level(level) {}
 
     bool turn(){
       for(Character* character : level->getCharacters()){
@@ -20,7 +20,7 @@ class DungeonCrawler {
         Tile* destTile = level->getTile(currentTile->getRow()+input.getDy(), currentTile->getColumn()+input.getDx());
         currentTile->moveTo(destTile, character);
 
-        terminalUI->draw(level);
+        abstractView->draw(level);
         return true;
       }
     }

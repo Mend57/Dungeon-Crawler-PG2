@@ -5,7 +5,7 @@
 #include <set>
 
 class AbstractView {
-  protected:
+  public:
     virtual void draw(Level* level) = 0;
     virtual ~AbstractView() = default;
 };
