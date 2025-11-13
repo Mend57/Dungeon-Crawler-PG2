@@ -11,9 +11,7 @@ class Portal : public Tile {
       Portal(const int row, const int column, Tile* destination) : Tile(row, column, "O"), destination(destination){}
       Tile* getDestination(){return destination;}
       void setDestination(Tile* destination){this->destination = destination;}
-      std::pair<bool, Tile*> onEnter(Character* who) override {
-          return {!(destination->hasCharacter()), destination};
-      }
+      std::pair<bool, Tile*> onEnter(Character* who) override {return {!(destination->hasCharacter()), destination};}
 };
 
 
