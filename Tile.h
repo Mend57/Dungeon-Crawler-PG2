@@ -25,7 +25,7 @@ class Tile {
     void setTexture(std::string texture){this->texture = texture;}
     bool hasCharacter(){return character != nullptr;}
 
-    virtual std::pair<bool, Tile*> onEnter(Character* who);
+    virtual std::pair<bool, Tile*> onEnter(Character* who) = 0;
     virtual bool onLeave(Tile* destTile, Character* who);
     bool moveTo(Tile* destTile, Character* who);
 };

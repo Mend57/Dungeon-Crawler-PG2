@@ -2,14 +2,10 @@
 #define DUNGEONCRAWLER_PIT_H
 #include "Tile.h"
 
-class Pit : public Tile {
+class Pit : public Floor {
     public:
-        Pit(const int row, const int column) : Tile(row, column, "_"){}
-        bool onLeave(Tile* destTile, Character* who) override{
-            if (!hasCharacter() || getCharacter() != who || destTile == nullptr || destTile->hasCharacter()) return false;
-            if (destTile->getTexture() == "<" || destTile->getTexture() == "_") return true;
-            return false;
-        }
+        Pit(const int row, const int column) : Tile(row, column, "_"), Floor(row, column){}
+        bool onLeave(Tile* destTile, Character* who) override{return (destTile->getTexture() == "<" || destTile->getTexture() == "_") ? Floor::onLeave(destTile, who) : false;}
 
 };
 

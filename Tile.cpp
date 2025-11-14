@@ -1,10 +1,6 @@
 #include "Tile.h"
 #include "Portal.h"
 
-std::pair<bool, Tile*> Tile::onEnter(Character* who){
-  return {true, nullptr};
-}
-
 bool Tile::onLeave(Tile* destTile, Character* who){
   if (!hasCharacter() || character != who || destTile == nullptr || destTile->hasCharacter()) return false;
   return true;
