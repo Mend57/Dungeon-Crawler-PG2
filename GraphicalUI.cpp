@@ -1,12 +1,11 @@
 #include "GraphicalUI.h"
-
 #include <map>
 #include <QLabel>
 
 GraphicalUI::GraphicalUI() {
-    QDir dirTextures("/home/mend/Documents/C++ Projects/PGII/DungeonCrawler/textures");
-    QDir dirChar("/home/mend/Documents/C++ Projects/PGII/DungeonCrawler/textures/char");
-    QDir dirFloor("/home/mend/Documents/C++ Projects/PGII/DungeonCrawler/textures/floor");
+    QDir dirTextures("../textures");
+    QDir dirChar("../textures/char");
+    QDir dirFloor("../textures/floor");
     QStringList filters;
     filters << "*.png";
 
@@ -15,11 +14,11 @@ GraphicalUI::GraphicalUI() {
     dirFloor.setNameFilters(filters);
 
     addFilesToMap(textures, dirTextures.entryInfoList());
-    addFilesToMap(textures, dirChar.entryInfoList());
-    addFilesToMap(textures, dirFloor.entryInfoList());
+    addFilesToMap(characterTextures, dirChar.entryInfoList());
+    addFilesToMap(floorTextures, dirFloor.entryInfoList());
 }
 
-void GraphicalUI::addFilesToMap(std::map<std::string, QPixmap> map, QFileInfoList fileList) {
+void GraphicalUI::addFilesToMap(std::map<std::string, QPixmap>& map, QFileInfoList fileList) {
     for (const QFileInfo &fileInfo : fileList) {
         QString name = fileInfo.baseName();
         QPixmap pixmap(fileInfo.filePath());
