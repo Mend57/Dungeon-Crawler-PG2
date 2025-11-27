@@ -10,7 +10,12 @@ class GraphicalUI : public AbstractView, public AbstractController{
         virtual void draw(Level *level) override;
         virtual Input move() override;
     private:
-        std::map<std::string, QPixmap> textures;
+        std::map<std::string, QPixmap> arrows;
+        std::map<std::string, QPixmap> character;
+        std::map<std::string, QPixmap> doors;
+        std::map<std::string, QPixmap> floor;
+        std::map<std::string, QPixmap> portal;
+        std::map<std::string, QPixmap> zombie;
 
 
 };
