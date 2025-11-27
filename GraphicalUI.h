@@ -9,8 +9,10 @@
 class GraphicalUI : public AbstractView, public AbstractController{
     public:
         GraphicalUI();
-        virtual void draw(Level *level) override;
-        virtual Input move() override;
+        virtual void draw(Level *level) override{};
+        virtual Input move() override{};
+        QPixmap getTexture(std::string texture) {return textures[texture];}
+
     private:
         std::map<std::string, QPixmap> characterTextures;
         std::map<std::string, QPixmap> floorTextures;
