@@ -3,6 +3,8 @@
 #include "AbstractView.h"
 #include <map>
 #include <QPixmap>
+#include <QDir>
+#include <QString>
 
 class GraphicalUI : public AbstractView, public AbstractController{
     public:
@@ -10,12 +12,9 @@ class GraphicalUI : public AbstractView, public AbstractController{
         virtual void draw(Level *level) override;
         virtual Input move() override;
     private:
-        std::map<std::string, QPixmap> arrows;
-        std::map<std::string, QPixmap> character;
-        std::map<std::string, QPixmap> doors;
-        std::map<std::string, QPixmap> floor;
-        std::map<std::string, QPixmap> portal;
-        std::map<std::string, QPixmap> zombie;
+        std::map<std::string, QPixmap> characterTextures;
+        std::map<std::string, QPixmap> floorTextures;
+        std::map<std::string, QPixmap> textures;
 
 
 };
