@@ -1,6 +1,6 @@
 #include "GraphicalUI.h"
-#include <map>
-#include <QLabel>
+
+
 
 GraphicalUI::GraphicalUI() {
     QDir dirTextures("../textures");
@@ -16,6 +16,11 @@ GraphicalUI::GraphicalUI() {
     addFilesToMap(textures, dirTextures.entryInfoList());
     addFilesToMap(characterTextures, dirChar.entryInfoList());
     addFilesToMap(floorTextures, dirFloor.entryInfoList());
+
+    startScreen = new StartScreen(this);
+    mainWindow = new MainWindow(this);
+
+    startScreen->show();
 }
 
 void GraphicalUI::addFilesToMap(std::map<std::string, QPixmap>& map, const QFileInfoList& fileList) {
@@ -26,5 +31,11 @@ void GraphicalUI::addFilesToMap(std::map<std::string, QPixmap>& map, const QFile
             map[name.toStdString()] = pixmap;
         }
     }
+}
+
+void GraphicalUI::switchWindow()
+{
+    startScreen->hide();
+    mainWindow->show();
 }
 

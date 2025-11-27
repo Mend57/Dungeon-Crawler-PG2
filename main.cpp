@@ -1,21 +1,12 @@
-#include <iostream>
 #include <QApplication>
-#include <QLabel>
-#include "DungeonCrawler.h"
 #include "GraphicalUI.h"
-#include <QScreen>
 
-int main(int argc, char* argv[])
-{
-    auto* terminalUI = new TerminalUI();
+int main(int argc, char *argv[]){
+    QApplication a(argc, argv);
 
-    auto* level = new Level(10, 10);
+    GraphicalUI gui;
 
-    auto* game = new DungeonCrawler(terminalUI, level);
-
-
-    terminalUI->draw(level);
-
-    while (game->turn());
+    return a.exec();
 }
+
 
