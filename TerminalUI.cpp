@@ -19,21 +19,21 @@ Input TerminalUI::move() {
     do{
         std::cin >> input;
         input = tolower(input);
-        valid = validInputs.find(input) != validInputs.end();
+        valid = validInputs.contains(input);
         if (!valid) std::cerr << "Invalid input." << std::endl;
     }while (!valid);
 
     switch (input) {
     case 'w':
-        return Input(0, -1);
+        return {0, -1};
     case 'a':
-        return Input(-1, 0);
+        return {-1, 0};
     case 's':
-        return Input(0, 1);
+        return {0, 1};
     case 'd':
-        return Input(1, 0);
+        return {1, 0};
     case '0':
-        return Input(true);
-    default: return Input(false);
+        return {true};
+    default: return {false};
     }
 }

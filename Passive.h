@@ -4,8 +4,6 @@ class Passive {
   public:
     virtual ~Passive() = default;
     virtual void notify() = 0;
-
-
 };
 
 

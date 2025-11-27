@@ -18,7 +18,7 @@ GraphicalUI::GraphicalUI() {
     addFilesToMap(floorTextures, dirFloor.entryInfoList());
 }
 
-void GraphicalUI::addFilesToMap(std::map<std::string, QPixmap>& map, QFileInfoList fileList) {
+void GraphicalUI::addFilesToMap(std::map<std::string, QPixmap>& map, const QFileInfoList& fileList) {
     for (const QFileInfo &fileInfo : fileList) {
         QString name = fileInfo.baseName();
         QPixmap pixmap(fileInfo.filePath());

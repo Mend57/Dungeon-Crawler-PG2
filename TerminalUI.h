@@ -2,11 +2,12 @@
 #define TERMINALUI_H
 #include "AbstractController.h"
 #include "AbstractView.h"
+#include <set>
 
 class TerminalUI: public AbstractView, public AbstractController {
 
   public:
-    virtual void draw(Level* level) override;
-    virtual Input move() override;
+    void draw(Level* level) override;
+    Input move() override;
 };
 #endif

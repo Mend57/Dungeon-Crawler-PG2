@@ -3,27 +3,19 @@
 #include <QLabel>
 #include "DungeonCrawler.h"
 #include "GraphicalUI.h"
+#include <QScreen>
 
-int main(int argc, char *argv[]) {
-    QApplication app(argc, argv);
-    Level* level = new Level(10, 10);
-    GraphicalUI* gui = new GraphicalUI();
-    DungeonCrawler* game = new DungeonCrawler(gui, level);
+int main(int argc, char* argv[])
+{
+    auto* terminalUI = new TerminalUI();
 
-    QLabel label;
-    label.setWindowTitle("QPixmap Example");
-    QPixmap pixmap = gui->getTexture("startscreen");
-    if(pixmap.isNull()) {
-        pixmap = QPixmap(400, 300);
-        pixmap.fill(Qt::red);
+    auto* level = new Level(10, 10);
 
-        QLabel *errorLabel = new QLabel("Imagem não encontrada!", &label);
-        errorLabel->setAlignment(Qt::AlignCenter);
-        errorLabel->setStyleSheet("color: white; font-size: 16px;");
-    }
-    label.setPixmap(pixmap);
-    label.show();
+    auto* game = new DungeonCrawler(terminalUI, level);
 
-    return app.exec();
+
+    terminalUI->draw(level);
+
+    while (game->turn());
 }
 

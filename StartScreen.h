@@ -1,7 +1,3 @@
-//
-// Created by mend on 27.11.25.
-//
-
 #ifndef DUNGEONCRAWLER_STARTSCREEN_H
 #define DUNGEONCRAWLER_STARTSCREEN_H
 

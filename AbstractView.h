@@ -1,8 +1,6 @@
 #ifndef DUNGEONCRAWLER_ABSTRACTUI_H
 #define DUNGEONCRAWLER_ABSTRACTUI_H
 #include "Level.h"
-#include <iostream>
-#include <set>
 
 class AbstractView {
   public:

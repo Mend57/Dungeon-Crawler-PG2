@@ -1,5 +1,4 @@
 #include "Tile.h"
-#include "Portal.h"
 
 bool Tile::onLeave(Tile* destTile, Character* who){
   if (!hasCharacter() || character != who || destTile == nullptr || destTile->hasCharacter()) return false;
