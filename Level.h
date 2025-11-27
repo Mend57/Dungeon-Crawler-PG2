@@ -39,6 +39,4 @@ class Level {
       void removeCharacter(Character* character){std::erase(characters, character);}
 };
 
-
-
 #endif
