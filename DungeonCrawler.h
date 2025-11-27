@@ -4,6 +4,10 @@
 #include "TerminalUI.h"
 
 class DungeonCrawler {
+  private:
+    AbstractView* abstractView;
+    Level* level;
+
   public:
     DungeonCrawler(AbstractView* abstractView, Level* level) : abstractView(abstractView), level(level) {}
 
@@ -20,11 +24,6 @@ class DungeonCrawler {
         return true;
       }
     }
-
-  private:
-    AbstractView* abstractView;
-    Level* level;
-
 };
 
 

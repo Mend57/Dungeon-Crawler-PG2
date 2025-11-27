@@ -5,6 +5,9 @@
 #include "Wall.h"
 
 class Door : public Floor, public Wall, public Passive {
+  private:
+    bool isDoorOpen;
+
   public:
     Door(const int row, const int column) : Tile(row, column, "X"), Floor(row,column), Wall(row,column), isDoorOpen(false){}
 
@@ -14,9 +17,6 @@ class Door : public Floor, public Wall, public Passive {
       setTexture(isDoorOpen ? "/" : "X");
     }
     std::pair<bool, Tile*> onEnter(Character* who) override {return isDoorOpen ? Floor::onEnter(who) :  Wall::onEnter(who);}
-
-  private:
-    bool isDoorOpen;
 };
 
 #endif

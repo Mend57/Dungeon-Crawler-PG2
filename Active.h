@@ -5,6 +5,9 @@
 #include "Passive.h"
 
 class Active {
+  private:
+    std::vector<Passive*> passiveObjects;
+
   public:
     std::vector<Passive*> getPassiveObject(){return passiveObjects;}
     void attach(Passive* passiveObject) {
@@ -14,9 +17,6 @@ class Active {
     void detach(Passive* passiveObject){std::erase(passiveObjects, passiveObject);}
     void activate(){for (Passive* passiveObject : passiveObjects) passiveObject->notify();
  }
-
-  private:
-    std::vector<Passive*> passiveObjects;
 };
 
 #endif

@@ -5,7 +5,6 @@
 #include <set>
 
 class TerminalUI: public AbstractView, public AbstractController {
-
   public:
     void draw(Level* level) override;
     Input move() override;

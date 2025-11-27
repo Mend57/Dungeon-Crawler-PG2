@@ -5,6 +5,15 @@
 #include "Character.h"
 
 class Tile {
+  private:
+    Character* character;
+    const int row;
+    const int column;
+    std::string texture;
+
+  protected:
+    Tile(const int row, const int column, std::string texture) : character(nullptr), row(row), column(column), texture(std::move(texture)){}
+
   public:
     virtual ~Tile() = default;
     std::string getTexture(){return texture;}
@@ -18,15 +27,6 @@ class Tile {
     virtual std::pair<bool, Tile*> onEnter(Character* who) = 0;
     virtual bool onLeave(Tile* destTile, Character* who);
     bool moveTo(Tile* destTile, Character* who);
-
-protected:
-  Tile(const int row, const int column, std::string texture) : character(nullptr), row(row), column(column), texture(std::move(texture)){}
-
-  private:
-    Character* character;
-    const int row;
-    const int column;
-    std::string texture;
 };
 
 

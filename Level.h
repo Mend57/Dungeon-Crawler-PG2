@@ -5,6 +5,24 @@
 #include "Character.h"
 
 class Level {
+    private:
+      std::vector<std::vector<Tile*>> tileMap;
+      std::vector<Character*> characters;
+      const int height;
+      const int width;
+      std::string l = {
+          "##########"
+          "#O.......#"
+          "#...<....#"
+          "#..___...#"
+          "#..___...#"
+          "#........#"
+          "#######X##"
+          "#O.......#"
+          "#...?....#"
+          "##########"
+      };
+
     public:
       Level(int height, int width);
       ~Level();
@@ -19,24 +37,6 @@ class Level {
 
       void addCharacter(Character* character){characters.push_back(character);}
       void removeCharacter(Character* character){std::erase(characters, character);}
-
-    private:
-        std::vector<std::vector<Tile*>> tileMap;
-        std::vector<Character*> characters;
-        const int height;
-        const int width;
-        std::string l = {
-            "##########"
-            "#O.......#"
-            "#...<....#"
-            "#..___...#"
-            "#..___...#"
-            "#........#"
-            "#######X##"
-            "#O.......#"
-            "#...?....#"
-            "##########"
-            };
 };
 
 #endif
