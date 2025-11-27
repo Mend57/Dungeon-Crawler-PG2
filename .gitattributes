@@ -1,12 +1,9 @@
-# Força todos os arquivos de texto a usar LF no repositório
 * text=auto eol=lf
 
-# Específicos para C++ (opcional)
 *.cpp text eol=lf
 *.h   text eol=lf
 *.hpp text eol=lf
 
-# Imagens e binários não devem ser convertidos
 *.png binary
 *.jpg binary
 *.bmp binary
